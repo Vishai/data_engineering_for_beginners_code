@@ -1,5 +1,7 @@
 FROM python:3.13-bookworm
 
+ARG TARGETARCH
+
 WORKDIR /home/airflow
 
 # Install Java
@@ -12,7 +14,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     procps \
     && rm -rf /var/lib/apt/lists/*
 
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+# Debian names the JDK directory for the image architecture (for example,
+# arm64 on Apple silicon and amd64 on Intel hosts).
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-${TARGETARCH}
 ENV PATH=$JAVA_HOME/bin:$PATH
 
 # Install Spark 
