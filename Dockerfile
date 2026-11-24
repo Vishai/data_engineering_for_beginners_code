@@ -55,7 +55,7 @@ RUN uv pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAI
 RUN uv pip install pyspark==4.0.1 'pyspark[sql]==4.0.1'
 RUN uv pip install ruff
 RUN uv pip install jupyterlab
-RUN uv pip install dbt dbt-core dbt-spark[session]
+RUN uv pip install dbt-core dbt-spark[session]
 RUN uv pip install duckdb
 RUN uv pip install plotly
 
